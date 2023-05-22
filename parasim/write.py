@@ -8,7 +8,7 @@ import boto3
 
 # set the path to the file
 bucket = "parasim-qed"
-name = "strm.tif"
+name = "srtm.tif"
 
 # start a session
 s3 = boto3.Session(profile_name="parasim").client("s3")
