@@ -118,7 +118,9 @@ class Viz(pyre.application):
             # scale the size
             width = 1000 * size / filesize
             # draw a line
-            yield f'         <path class="access" d="M {x} {y} l {width} 0" />'
+            yield f'         <path class="access" d="M {x} {y} l {width} 0">'
+            yield f"           <title>offset: {origin}, length: {size} bytes"
+            yield f"         </path>"
         # close up
         yield "        </g>"
         # all done
