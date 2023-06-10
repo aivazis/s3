@@ -1,0 +1,20 @@
+# -*- pyre -*-
+#
+# michael a.g. aïvázis <michael.aivazis@para-sim.com>
+# (c) 1998-2023 all rights reserved
+
+# S3 configuration
+qed.app.s3:
+    profile: parasim
+    region: eu-central-1
+    bucket: fsm-paged
+
+# the bucket
+parasim: s3://{qed.app.s3.profile}@{qed.app.s3.region}/{qed.app.s3.bucket}
+
+# the datasets
+s3.rslc:
+    uri: "{parasim}/rslc.h5"
+
+
+# end of file
