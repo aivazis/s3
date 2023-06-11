@@ -5,9 +5,10 @@
 
 # S3 configuration
 qed.app.s3:
+    page: 64
     profile: parasim
     region: eu-central-1
-    bucket: fsm-paged
+    bucket: fsm-{qed.app.s3.page}k
 
 # the bucket
 parasim: s3://{qed.app.s3.profile}@{qed.app.s3.region}/{qed.app.s3.bucket}
