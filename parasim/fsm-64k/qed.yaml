@@ -17,5 +17,7 @@ parasim: s3://{qed.app.s3.profile}@{qed.app.s3.region}/{qed.app.s3.bucket}
 s3.rslc:
     uri: "{parasim}/rslc.h5"
 
+local.rslc:
+    uri: rslc.h5
 
 # end of file
