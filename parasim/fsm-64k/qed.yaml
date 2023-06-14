@@ -10,14 +10,26 @@ qed.app.s3:
     region: eu-central-1
     bucket: fsm-{qed.app.s3.page}k
 
+# the location of the alos data
+alos: /Users/mga/dv/data/alos
 # the bucket
 parasim: s3://{qed.app.s3.profile}@{qed.app.s3.region}/{qed.app.s3.bucket}
 
 # the datasets
+local.isce2:
+    uri: "{alos}/20070215.slc"
+    shape: 36864, 10344
+
 s3.rslc:
     uri: "{parasim}/rslc.h5"
 
 local.rslc:
     uri: rslc.h5
+
+# mount the datasets
+datasets:
+    - isce2.rslc#local.isce2
+    - nisar.rslc#local.rslc
+    - nisar.rslc#s3.rslc
 
 # end of file
