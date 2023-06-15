@@ -18,7 +18,7 @@ class Read(pyre.application):
 
     # the target file
     uri = pyre.properties.uri()
-    uri.default = "s3://parasim@eu-central-1/parasim-qed/rslc.h5"
+    uri.default = "s3://parasim@eu-central-1/fsm-64k/rslc.h5"
     uri.doc = "the target file URI"
 
     # interface
