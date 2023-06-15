@@ -22,6 +22,7 @@ local.isce2:
 
 s3.rslc:
     uri: "{parasim}/rslc.h5"
+    pages: 32
 
 local.rslc:
     uri: rslc.h5
