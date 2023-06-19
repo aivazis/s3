@@ -1,0 +1,39 @@
+# -*- pyre -*-
+#
+# michael a.g. aïvázis <michael.aivazis@para-sim.com>
+# (c) 1998-2023 all rights reserved
+
+# set up a tile size
+chunk: 512
+
+# S3 configuration
+qed.app.s3:
+    page: 64
+    profile: parasim
+    region: eu-central-1
+    bucket: fsm-{qed.app.s3.page}k-{chunk}
+
+# the location of the alos data
+alos: /Users/mga/dv/data/alos
+# the bucket
+s3: s3://{qed.app.s3.profile}@{qed.app.s3.region}/{qed.app.s3.bucket}
+
+# the datasets
+local.isce2:
+    uri: "{alos}/20070215.slc"
+    shape: 36864, 10344
+
+s3.rslc:
+    uri: "{s3}/rslc.h5"
+    pages: 32
+
+local.rslc:
+    uri: rslc.h5
+
+# mount the datasets
+datasets:
+    - isce2.rslc#local.isce2
+    - nisar.rslc#local.rslc
+    # - nisar.rslc#s3.rslc
+
+# end of file
