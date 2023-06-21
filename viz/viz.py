@@ -21,10 +21,6 @@ class Viz(pyre.application):
     log.default = "s3.log"
     log.doc = "the logfile with the access info"
 
-    svg = pyre.properties.ostream()
-    svg.default = "s3.html"
-    svg.doc = "the page with the visualization"
-
     scale = pyre.properties.float()
     scale.default = 0.5
     scale.doc = "the shrink factor"
@@ -37,10 +33,12 @@ class Viz(pyre.application):
         """
         # parse
         filesize, requests = self.parse()
+        # deduce the output file name
+        svg = pyre.primitives.path(self.log.name).withSuffix(".html")
         # generate the content
         content = "\n".join(self.generate(filesize=filesize, requests=requests))
         # and write it out
-        print(content, file=self.svg)
+        print(content, file=svg)
         # all done
         return 0
 
