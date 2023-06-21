@@ -38,7 +38,7 @@ class Viz(pyre.application):
         # generate the content
         content = "\n".join(self.generate(filesize=filesize, requests=requests))
         # and write it out
-        print(content, file=svg)
+        print(content, file=open(svg, mode="w"))
         # all done
         return 0
 
