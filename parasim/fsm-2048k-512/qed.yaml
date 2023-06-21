@@ -1,0 +1,43 @@
+# -*- pyre -*-
+#
+# michael a.g. aïvázis <michael.aivazis@para-sim.com>
+# (c) 1998-2023 all rights reserved
+
+# pick the page size for the file space manager, in k
+fsm: 2048
+# set up a chunk size
+chunk: 512
+
+# S3 configuration
+qed.app.s3:
+    page: "{fsm}"
+    profile: parasim
+    region: eu-central-1
+    bucket: fsm-{fsm}k-{chunk}
+
+# the location of the alos data
+alos: /Users/mga/dv/data/alos
+# the bucket
+cloud: s3://{qed.app.s3.profile}@{qed.app.s3.region}/{qed.app.s3.bucket}
+
+# the datasets
+local.isce2:
+    uri: "{alos}/20070215.slc"
+    shape: 36864, 10344
+
+cloud.rslc:
+    uri: "{cloud}/rslc.h5"
+    # the number of 4k pages to set aside for the FSM page aggregator
+    # this sets up 32 times the number of 4k pages that fit in the FSM page size
+    pages: "32 * {fsm}"
+
+local.rslc:
+    uri: rslc.h5
+
+# mount the datasets
+datasets:
+    - isce2.rslc#local.isce2
+    - nisar.rslc#local.rslc
+    - nisar.rslc#cloud.rslc
+
+# end of file
